@@ -22,6 +22,12 @@ function Estudiantes() {
   const enviarDatos = (event) => {
     event.preventDefault();
     saveStudent();
+    setNuevoEstudiante({
+      id: "",
+      name: "",
+      lastname: "",
+      notes: "",
+    });
   };
 
   const saveStudent = () => {
@@ -63,10 +69,30 @@ function Estudiantes() {
           </div>
         ))}
       <form onSubmit={enviarDatos}>
-        <input type="text" name="id" onChange={inputHandled} />
-        <input type="text" name="name" onChange={inputHandled} />
-        <input type="text" name="lastname" onChange={inputHandled} />
-        <input type="text" name="notes" onChange={inputHandled} />
+        <input
+          type="text"
+          name="id"
+          onChange={inputHandled}
+          value={nuevoEstudiante.id}
+        />
+        <input
+          type="text"
+          name="name"
+          onChange={inputHandled}
+          value={nuevoEstudiante.name}
+        />
+        <input
+          type="text"
+          name="lastname"
+          onChange={inputHandled}
+          value={nuevoEstudiante.lastname}
+        />
+        <input
+          type="text"
+          name="notes"
+          onChange={inputHandled}
+          value={nuevoEstudiante.notes}
+        />
 
         <button type="submit">Guardar</button>
       </form>
