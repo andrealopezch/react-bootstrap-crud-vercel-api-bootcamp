@@ -63,6 +63,8 @@ function Estudiantes() {
       {dataestudiantes &&
         dataestudiantes.map((infoestudiantes, index) => (
           <div key={index}>
+            <button>Editar</button>
+            <button>Eliminar</button>
             {infoestudiantes.name}
             &nbsp;
             {infoestudiantes.lastname}
