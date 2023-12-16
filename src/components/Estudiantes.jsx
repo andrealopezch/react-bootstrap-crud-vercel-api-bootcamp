@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 
 function Estudiantes() {
   const [dataestudiantes, setDataEstudiantes] = useState([]);
+  const [nuevoEstudiante, setNuevoEstudiante] = useState({
+    id: "",
+    name: "",
+    lastname: "",
+    notes: "",
+  });
 
   useEffect(() => {
     fetch("https://demobootcamp-vercel-api-node-postgress.vercel.app/students")
@@ -12,13 +18,13 @@ function Estudiantes() {
       });
   }, []);
 
+  const enviarDatos = (event) => {
+    event.preventDefault();
+    saveStudent();
+  };
+
   const saveStudent = () => {
-    const nuevoEstudiante = {
-      id: 108,
-      name: "Andrea",
-      lastname: "Lopez",
-      notes: "bien",
-    };
+    console.log(nuevoEstudiante);
 
     fetch(
       "https://demobootcamp-vercel-api-node-postgress.vercel.app/students",
@@ -34,6 +40,13 @@ function Estudiantes() {
       .then((data) => {});
   };
 
+  const inputHandled = (event) => {
+    setNuevoEstudiante({
+      ...nuevoEstudiante,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <>
       <h2>Lista de Estudiantes</h2>
@@ -46,7 +59,14 @@ function Estudiantes() {
             {infoestudiantes.lastname}
           </div>
         ))}
-      <button onClick={saveStudent}>Guardar</button>
+      <form onSubmit={enviarDatos}>
+        <input type="text" name="id" onChange={inputHandled} />
+        <input type="text" name="name" onChange={inputHandled} />
+        <input type="text" name="lastname" onChange={inputHandled} />
+        <input type="text" name="notes" onChange={inputHandled} />
+
+        <button type="submit">Guardar</button>
+      </form>
     </>
   );
 }
