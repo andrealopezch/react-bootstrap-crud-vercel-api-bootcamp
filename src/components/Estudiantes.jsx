@@ -8,6 +8,7 @@ function Estudiantes() {
     lastname: "",
     notes: "",
   });
+  const [control, setControl] = useState(false);
 
   useEffect(() => {
     fetch("https://demobootcamp-vercel-api-node-postgress.vercel.app/students")
@@ -16,7 +17,7 @@ function Estudiantes() {
         console.log(data);
         setDataEstudiantes(data);
       });
-  }, []);
+  }, [control]);
 
   const enviarDatos = (event) => {
     event.preventDefault();
@@ -37,7 +38,9 @@ function Estudiantes() {
       }
     )
       .then((response) => response.json())
-      .then((data) => {});
+      .then((data) => {
+        setControl(!control);
+      });
   };
 
   const inputHandled = (event) => {
