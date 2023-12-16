@@ -14,13 +14,13 @@ function Estudiantes() {
 
   return (
     <>
-      Lista de Estudiantes
+      <h2>Lista de Estudiantes</h2>
       <br></br>
       {dataestudiantes &&
-        dataestudiantes.map((infoestudiante, index) => (
+        dataestudiantes.map((infoestudiantes, index) => (
           <div key={index}>
-            {infoestudiante.name}
-            {infoestudiante.lastname}
+            {infoestudiantes.name}
+            {infoestudiantes.lastname}
           </div>
         ))}
     </>
